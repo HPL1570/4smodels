@@ -1,19 +1,18 @@
 // src/TaskComponent.js
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { connect } from 'react-redux'; // Import connect
 import { useNavigate } from 'react-router-dom';
 import Task from './taskClasses'; // Import the Task class
 import { useApiClient } from './useApiClient'; // Assume useApiClient is a custom hook for axios requests
 
-const TaskComponent = ({ taskId }) => {
+const TaskComponent = ({ task, userDetails }) => { // Destructure task and userDetails from props
   const { axiosRequest } = useApiClient();
-  const { userDetails } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    TaskName: '',
-    TaskTypeID: '',
-    TaskDescription: '',
-    TaskInput: '',
+    TaskName: task.TaskName || '', // Initialize form data with task data if available
+    TaskTypeID: task.TaskTypeID || '',
+    TaskDescription: task.TaskDescription || '',
+    TaskInput: task.TaskInput || '',
   });
 
   const [taskSteps, setTaskSteps] = useState([
@@ -42,12 +41,13 @@ const TaskComponent = ({ taskId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Validation and task creation logic...
       await Task.TaskSchema.validate(formData);
       taskSteps.forEach(step => {
         Task.TaskStepSchema.validateSync(step);
       });
 
-      const task = new Task(
+      const newTask = new Task(
         formData.TaskName,
         formData.TaskTypeID,
         formData.TaskDescription,
@@ -55,10 +55,10 @@ const TaskComponent = ({ taskId }) => {
         userDetails?.UserID
       );
 
-      task.setTaskSteps(taskSteps);
+      newTask.setTaskSteps(taskSteps);
 
-      console.log('Task:', task.getTaskFields());
-      console.log('Task Steps:', task.getTaskSteps());
+      console.log('Task:', newTask.getTaskFields());
+      console.log('Task Steps:', newTask.getTaskSteps());
 
       const values = {
         ...formData,
@@ -150,4 +150,9 @@ const TaskComponent = ({ taskId }) => {
   );
 };
 
-export default TaskComponent;
+const mapStateToProps = (state) => ({
+  task: state.task, // Map state.task to task prop
+  userDetails: state.auth.userDetails, // Assuming userDetails is part of auth slice
+});
+
+export default connect(mapStateToProps)(TaskComponent); // Connect TaskComponent to Redux
