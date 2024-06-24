@@ -63,18 +63,18 @@ class LLMSchema {
   // Static schema for validation
   static LLMSchemaValidation = yup.object().shape({
     // Fields from Questions Table
-    QID: yup.number().integer().notRequired(),
-    QsetID: yup.number().integer().required('QsetID is required'),
-    Question: yup.string().required('Question is required'),
-    Answer: yup.string().required('Answer is required'),
+    QID: yup.number().integer(),
+    QsetID: yup.number().integer(),
+    Question: yup.string(),
+    Answer: yup.string(),
     
     // Fields from LLM Answers Table
-    LLM: yup.string().required('LLM is required'),
-    LLMAnswer: yup.string().required('LLMAnswer is required'),
-    Accuracy: yup.number().required('Accuracy is required'),
-    Tokens: yup.number().integer().required('Tokens are required'),
-    Cost: yup.number().required('Cost is required'),
-    Latency: yup.number().required('Latency is required'),
+    LLM: yup.string(),
+    LLMAnswer: yup.string(),
+    Accuracy: yup.number(),
+    Tokens: yup.number().integer(),
+    Cost: yup.number(),
+    Latency: yup.number(),
   });
 
   // Method to validate the schema

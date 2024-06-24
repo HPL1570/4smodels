@@ -13,11 +13,11 @@ class ContextVariable {
   }
 
   static ContextVariableSchema = yup.object().shape({
-    contextVariableName: yup.string().required('Context Variable Name is required'),
-    dataType: yup.string().required('Data Type is required'),
-    defaultDimensionalityID: yup.number().required('Default Dimensionality ID is required'),
+    contextVariableName: yup.string(),
+    dataType: yup.string(),
+    defaultDimensionalityID: yup.number(),
     dimensionHierarchy: yup.string(),
-    createBy: yup.number().required('Create By is required'),
+    createBy: yup.number(),
     updateBy: yup.number(),
     createDateTime: yup.date().default(() => new Date()),
     updateDateTime: yup.date(),

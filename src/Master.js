@@ -78,27 +78,27 @@ class MasterDataComponent {
 }
 
 MasterDataComponent.MasterDataComponentSchema = yup.object().shape({
-  MasterDataId: yup.number().required('MasterDataId is required'),
-  Name: yup.string().required('Name is required'),
-  DataType: yup.string().required('DataType is required'),
-  Source: yup.string().required('Source is required'),
+  MasterDataId: yup.number(),
+  Name: yup.string(),
+  DataType: yup.string(),
+  Source: yup.string(),
   SynonymsList: yup.string().nullable(),
   TableName: yup.string().nullable(),
   FieldName: yup.string().nullable(),
   SearchNames: yup.object().nullable(),
   ApiName: yup.string().nullable(),
   ApiDataJson: yup.object().shape({
-    IdColumnName: yup.string().required('IdColumnName is required'),
-    IdColumnType: yup.string().required('IdColumnType is required'),
+    IdColumnName: yup.string(),
+    IdColumnType: yup.string(),
     IdSearchString: yup.string().nullable(),
     IdOutputLabel: yup.string().nullable(),
-    ValueColumnName: yup.string().required('ValueColumnName is required'),
-    ValueColumnDataType: yup.string().required('ValueColumnDataType is required'),
+    ValueColumnName: yup.string(),
+    ValueColumnDataType: yup.string(),
     ValueSearchString: yup.string().nullable(),
     ValueOutputLabel: yup.string().nullable(),
     ExtraInputParameters: yup.array().of(
       yup.object().shape({
-        ColumnName: yup.string().required('ColumnName is required'),
+        ColumnName: yup.string(),
         Mandatory: yup.boolean().default(false),
         SearchString: yup.string().nullable(),
         OutputLabel: yup.string().nullable(),
@@ -106,8 +106,8 @@ MasterDataComponent.MasterDataComponentSchema = yup.object().shape({
     ),
     OutputList: yup.array().of(
       yup.object().shape({
-        ColumnName: yup.string().required('ColumnName is required'),
-        DataType: yup.string().required('DataType is required'),
+        ColumnName: yup.string(),
+        DataType: yup.string(),
         ColumnLabel: yup.string().nullable(),
       })
     ),

@@ -80,20 +80,20 @@ class Questioner {
 
   // Static schema for validation
   static QuestionerSchema = yup.object().shape({
-    QsetID: yup.number().integer().notRequired(),
-    Name: yup.string().required('Name is required').max(255),
+    QsetID: yup.number().integer(),
+    Name: yup.string().max(255),
     Comments: yup.string().nullable(),
     AiRole: yup.string().nullable(),
-    UploadedBy: yup.number().integer().required('UploadedBy is required'),
-    NumberOfQuestions: yup.number().integer().required('NumberOfQuestions is required'),
-    UploadDate: yup.date().required('UploadDate is required'),
-    LLM: yup.string().required('LLM is required'),
-    Accuracy: yup.number().required('Accuracy is required'),
-    Tokens: yup.number().integer().required('Tokens are required'),
-    Cost: yup.number().required('Cost is required'),
-    Latency: yup.number().required('Latency is required'),
-    RunBy: yup.number().integer().required('RunBy is required'),
-    RunDateTime: yup.date().required('RunDateTime is required'),
+    UploadedBy: yup.number().integer(),
+    NumberOfQuestions: yup.number().integer(),
+    UploadDate: yup.date(),
+    LLM: yup.string(),
+    Accuracy: yup.number(),
+    Tokens: yup.number().integer(),
+    Cost: yup.number(),
+    Latency: yup.number(),
+    RunBy: yup.number().integer(),
+    RunDateTime: yup.date(),
   });
 
   // Method to validate the schema

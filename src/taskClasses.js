@@ -11,12 +11,11 @@ class Task {
   }
 
   static TaskSchema = yup.object().shape({
-    TaskName: yup.string().required('Task Name is required'),
-    TaskTypeID: yup.string().required('Task Type is required'),
-    TaskDescription: yup.string().required('Description is required'),
+    TaskName: yup.string(),
+    TaskTypeID: yup.string(),
+    TaskDescription: yup.string(),
     TaskInput: yup
       .string()
-      .required('Task Input is required')
       .test('is-json', 'Task Input must be a valid JSON', (value) => {
         try {
           JSON.parse(value);
@@ -28,8 +27,8 @@ class Task {
   });
 
   static TaskStepSchema = yup.object().shape({
-    StepSequenceNo: yup.number().required('Step Sequence Number is required'),
-    StepDescription: yup.string().required('Step Description is required'),
+    StepSequenceNo: yup.number(),
+    StepDescription: yup.string(),
     InputData: yup
       .string()
       .test('is-json', 'Input Data must be a valid JSON', (value) => {
@@ -40,9 +39,9 @@ class Task {
           return false;
         }
       }),
-    CallType: yup.string().required('Call Type is required'),
-    CallObjectName: yup.string().required('Call Object Name is required'),
-    Active: yup.boolean().required('Active status is required'),
+    CallType: yup.string(),
+    CallObjectName: yup.string(),
+    Active: yup.boolean(),
   });
 
   addTaskStep(step) {

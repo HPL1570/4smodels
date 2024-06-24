@@ -144,7 +144,7 @@ class Intent {
 
   // Static schema for Intent validation
   static IntentSchema = yup.object().shape({
-    IntentName: yup.string().required('Intent Name is required'),
+    IntentName: yup.string(),
     Description: yup.string(),
     ParentIntentID: yup.number().nullable(),
     Synonyms: yup.string(),
@@ -154,9 +154,9 @@ class Intent {
 
   // Static schema for Intent Test validation
   static IntentTestSchema = yup.object().shape({
-    TestDataJson: yup.string().required('Test Data JSON is required'),
-    TestResultsJson: yup.string().required('Test Results JSON is required'),
-    TestRunDateTime: yup.date().required('Test Run Date Time is required'),
+    TestDataJson: yup.string(),
+    TestResultsJson: yup.string(),
+    TestRunDateTime: yup.date(),
     Comments: yup.string(),
   });
 

@@ -12,10 +12,10 @@ class Dimension {
   }
 
   static DimensionSchema = yup.object().shape({
-    dimensionName: yup.string().required('Dimension Name is required'),
-    listOfValues: yup.string().required('List of Values is required'),
-    masterDataComponent: yup.string().required('Master Data Component is required'),
-    createBy: yup.number().required('Create By is required'),
+    dimensionName: yup.string(),
+    listOfValues: yup.string(),
+    masterDataComponent: yup.string(),
+    createBy: yup.number(),
     updateBy: yup.number(),
     createDateTime: yup.date().default(() => new Date()),
     updateDateTime: yup.date(),

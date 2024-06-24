@@ -51,7 +51,7 @@ class Prompt {
     TaskOutputFormat: yup.string().nullable(),
     TaskExample: yup.string().nullable(),
     LLM: yup.string().nullable(),
-    CreatedBy: yup.number().required('Created By is required'),
+    CreatedBy: yup.number(),
     CreatedDateTime: yup.date().default(() => new Date()),
     UpdatedDateTime: yup.date().nullable(),
     VariableListJson: yup.string().nullable(),
